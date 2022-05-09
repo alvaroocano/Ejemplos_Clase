@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<profes>
+<profe>
+    <nombre>Raimunda </nombre>
+    <asg>Matematicas</asg>
+</profe>
+
+<profe>
+    <nombre>Hasbulla </nombre>
+    <asg>Fisica</asg>
+    <asg>Ruso</asg>
+</profe>
+
+<profe>
+    <nombre>El Fary </nombre>
+    <asg>Musica</asg>
+    <asg>Lengua Castellana y Literatura </asg>
+</profe>
+</profes>

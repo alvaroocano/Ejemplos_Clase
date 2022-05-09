@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+		function cargarProfes() {
+			var objeto_peticion=new XMLHttpRequest();
+			objeto_peticion.onreadystatechange=function()
+			{
+				if (objeto_peticion.status==200 && objeto_peticion.readyState==4)
+				{
+					mostrarProfes(objeto_peticion.responseXML);
+				}
+			}
+		objeto_peticion.open("GET", "profes.xml", true);
+		objeto_peticion.send();
+		}
+
+			function mostrarProfes(xml){
+				var arr_profes=xml.getElementsByTagName("profe");
+				for(i=0; i<arr_profes.length; i++){
+					var arr_nombres=arr_profes[i].getElementsByTagName("nombre")[0].childNodes[0].nodeValue;
+					var arr_asignaturas=arr_profes[i].getElementsByTagName("asg");
+					var txt="";
+					for(j=0; j<arr_asignaturas.length; j++){
+						var txt_asg=arr_asignaturas[j].childNodes[0].nodeValue;
+						txt=txt+" "+txt_asg;
+					}
+					console.log("NOMBRE: "+arr_nombres+" ASIGNATURA: "+txt+"");
+					
+				}
+				
+				
+
+			}
+
+	</script>
+</head>
+<body onload="cargarProfes()">
+
+<div id="conten_prof">
+	
+
+</div>
+
+</body>
+</html>

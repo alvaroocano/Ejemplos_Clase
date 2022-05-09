@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<head>
+<script>
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if(xhr.readyState==4 && xhr.status==200){
+			var obj_json=JSON.parse(xhr.responseText);
+			console.log(obj_json.data[2].zona_basica_salud);
+		}
+	}
+	xhr.open("GET","covi.json");
+	xhr.send();
+</script>
+
+</head>
+<body>
+	<div id="cont_pos"></div>
+
+</body>
+<script>
+
+</script>
+<html>

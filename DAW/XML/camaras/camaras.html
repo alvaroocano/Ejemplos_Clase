@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Imagenes AJAX</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script>
+function insertarCamaras()
+	{
+	var objeto_peticion=new XMLHttpRequest();
+	objeto_peticion.onreadystatechange=function()
+		{
+			if (objeto_peticion.status==200 && objeto_peticion.readyState==4)
+			{
+				//TODO
+				pintarTabla(objeto_peticion.responseXML);
+
+			}
+		}
+objeto_peticion.open("GET", "camaras.xml");
+objeto_peticion.send();
+		//readyState
+		//status
+
+		//responseText
+		//responseXML
+	}
+	function pintarTabla(xml)
+	{
+		var arr_camaras=xml.getElementsByTagName("Camara")
+		var arr_latitud=xml.getElementsByTagName("Latitud");
+		var arr_longitud=xml.getElementsByTagName("Longitud");
+		var arr_URL=xml.getElementsByTagName("URL");
+		var obj_tabla=document.createElement("table");
+
+		for(i=0; i<arr_camaras.length;i++ ){
+			var objeto_fila=document.createElement("tr");
+			var objeto_celda_latitud=document.createElement("td");
+			var objeto_celda_longitud=document.createElement("td");
+			var objeto_celda_URL=document.createElement("td");
+			var latitud=arr_latitud[i].childNodes[0].nodeValue;
+			var longitud=arr_longitud[i].childNodes[0].nodeValue;
+			var img=arr_URL[i].childNodes[0].nodeValue;
+			objeto_celda_latitud.innerHTML=latitud;
+			objeto_celda_longitud.innerHTML=longitud;
+			objeto_celda_img=document.createElement("img");
+			objeto_celda_img.src=(img);
+			objeto_fila.appendChild(objeto_celda_latitud);
+			objeto_fila.appendChild(objeto_celda_longitud);
+			objeto_fila.appendChild(objeto_celda_img);
+			obj_tabla.appendChild(objeto_fila);
+			document.getElementById("contenedor_tabla").appendChild(obj_tabla);
+		}
+	}
+</script>
+
+</head>
+<body onload="insertarCamaras();">
+	<div id="contenedor_tabla"></div>
+</body>
+</html>

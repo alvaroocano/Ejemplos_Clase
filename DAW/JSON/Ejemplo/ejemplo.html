@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<head>
+<script>
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+
+	if(xhr.readyState==4 && xhr.status==200){
+		var obj_json=JSON.parse(xhr.responseText);
+		var latitud=obj_json.iss_position.latitude;
+		var longitud=obj_json.iss_position.longitude;
+		console.log("Longitud:"+longitud);
+		console.log("Latitud:"+latitud);
+		var objeto_posicion=new Object();
+		objeto_posicion.latitud=latitud;
+		objeto_posicion.longitud=longitud;
+		pintarParrafosConObjeto(objeto_posicion);
+	}
+}
+	xhr.open("GET","http://api.open-notify.org/iss-now.json", true);
+	xhr.send();
+
+	/*function pintarParrafos(latitud, longitud){
+
+		//Pintamos los parrafos
+		var p_latitud=document.createElement("p");
+		var p_longitud=document.createElement("p");
+		p_latitud.innerHTML="Latitud: "+latitud;
+		p_longitud.innerHTML="Longitud: "+longitud;
+		var contenedor=document.getElementById("cont_pos");
+		contenedor.appendChild(p_latitud);
+		contenedor.appendChild(p_longitud);
+	}*/
+
+		function pintarParrafosConObjeto(objeto_posicion){
+			var p_latitud=document.createElement("p");
+			var p_longitud=document.createElement("p");
+			p_latitud.innerHTML="Latitud: "+objeto_posicion.latitud;
+			p_longitud.innerHTML="Longitud: "+objeto_posicion.longitud;
+			var contenedor=document.getElementById("cont_pos");
+			contenedor.appendChild(p_latitud);
+			contenedor.appendChild(p_longitud);
+		}
+	
+</script>
+
+</head>
+<body>
+	<div id="cont_pos"></div>
+
+</body>
+<script>
+
+</script>
+<html>
